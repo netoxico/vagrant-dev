@@ -1,0 +1,27 @@
+- name: ensure required packages are installed for Java 7
+  apt: name={{item}} state=latest update_cache=yes
+  with_items:
+    - python-software-properties
+  become: yes
+  become_method: sudo
+
+- name: Add Java repository to sources
+  action: apt_repository repo='ppa:webupd8team/java'
+  become: yes
+  become_method: sudo
+
+- name: Autoaccept license for Java
+  action: shell echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+- name: Update APT
+  apt: update_cache=yes
+  become: yes
+  become_method: sudo
+
+- name: java | Install dependencies
+  apt: name={{item}} state=present
+  with_items:
+    - oracle-java7-installer
+  become: yes
+  become_method: sudo
+

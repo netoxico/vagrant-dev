@@ -1,10 +1,15 @@
 ---
+- name: update apt and check git is installed
+  apt: name=git state=installed update_cache=yes
+  become: yes
+  become_method: sudo
+
 - name: Installs vim, zsh, libxml2-dev, libjpeg62-dev, zlib1g-dev
   apt: name={{item}}
   with_items:
+    - htop
     - vim
     - zsh
-    - git-core
     - libxml2-dev
     - libjpeg62-dev
     - zlib1g-dev

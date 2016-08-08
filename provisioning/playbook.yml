@@ -1,18 +1,13 @@
 ---
-- name: Install Python Django Dev invironment
+- name: Install Django Development Environment
   hosts: all
-  # remote_user: vagrant
-  # become: yes
-  # become_method: sudo
   user: vagrant
   gather_facts: no
-  pre_tasks:
-    - raw: sudo apt-get update
-    - raw: sudo apt-get -y install python-minimal
   vars:
-    zsh_theme: robbyrussell
+    zsh_theme: cloud
   roles:
     - common
-    - mysql
     - python
-    - postgres
+    - mysql
+    # - postgres
+    # - elasticsearch
