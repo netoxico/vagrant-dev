@@ -4,7 +4,7 @@
   # remote_user: vagrant
   # become: yes
   # become_method: sudo
-  user: ubuntu
+  user: vagrant
   gather_facts: no
   pre_tasks:
     - raw: sudo apt-get update

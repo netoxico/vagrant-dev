@@ -16,7 +16,7 @@
   become_method: sudo
 
 - name: Create virtualenvs
-  file: path=/home/ubuntu/.virtualenvs state=directory
+  file: path=/home/vagrant/.virtualenvs state=directory
 
 - name: Set postactivate
-  template: src=files/postactivate dest=/home/ubuntu/.virtualenvs/postactivate
+  template: src=files/postactivate dest=/home/vagrant/.virtualenvs/postactivate
