@@ -1,0 +1,22 @@
+# Aliases
+alias dj='python manage.py'
+alias djr='dj runserver 0.0.0.0:8000'
+alias djs='dj shell'
+alias djt='dj test'
+alias djkill='kill -9 `sudo lsof -t -i:8000`'
+
+# virtualenv promt
+PS1="$FG[075]⚡ $PS1"
+
+PROJECT_DIR="/vagrant/$(basename $VIRTUAL_ENV)"
+
+if [ -d $PROJECT_DIR ]; then
+    # If we aren't already within the project dir, cd into it
+    if [[ ! `pwd` == "$PROJECT_DIR*" ]]; then
+        export PRE_VENV_ACTIVATE_DIR=`pwd`
+        cd "$PROJECT_DIR"
+    fi
+else
+    cd /vagrant
+fi
+unset PROJECT_DIR

@@ -1,0 +1,9 @@
+---
+- name: Install Postgres
+  apt: name={{item}} state=installed
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - postgresql-server-dev-9.5
+  become: yes
+  become_method: sudo

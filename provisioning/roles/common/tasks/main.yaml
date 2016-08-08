@@ -1,0 +1,23 @@
+---
+- name: Installs vim, zsh, libxml2-dev, libjpeg62-dev, zlib1g-dev
+  apt: name={{item}}
+  with_items:
+    - vim
+    - zsh
+    - git-core
+    - libxml2-dev
+    - libjpeg62-dev
+    - zlib1g-dev
+  become: yes
+  become_method: sudo
+
+- name: Clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh
+
+- name: Set .zshrc conf file
+  template: src=files/zshrc.in dest=/home/{{ user }}/.zshrc
+
+- name: Set zsh as default shell
+  user: name={{ user }} shell=/bin/zsh
+  become: yes
+  become_method: sudo

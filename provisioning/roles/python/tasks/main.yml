@@ -1,0 +1,22 @@
+---
+- name: Install pip
+  apt: pkg=python-pip state=installed
+  become: yes
+  become_method: sudo
+
+- name: Update pip
+  pip: name=pip state=latest
+
+- name: Install virtualenv, virtualenvwrapper
+  pip: name={{item}} state=present
+  with_items:
+    - virtualenv
+    - virtualenvwrapper
+  become: yes
+  become_method: sudo
+
+- name: Create virtualenvs
+  file: path=/home/ubuntu/.virtualenvs state=directory
+
+- name: Set postactivate
+  template: src=files/postactivate dest=/home/ubuntu/.virtualenvs/postactivate
