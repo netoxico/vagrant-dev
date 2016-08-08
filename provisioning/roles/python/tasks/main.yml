@@ -1,4 +1,9 @@
 ---
+- name: Install python minimal
+  apt: name=python-minimal
+  become: yes
+  become_method: sudo
+
 - name: Install pip
   apt: pkg=python-pip state=installed
   become: yes
@@ -16,7 +21,7 @@
   become_method: sudo
 
 - name: Create virtualenvs
-  file: path=/home/vagrant/.virtualenvs state=directory
+  file: path=/home/{{user}}/.virtualenvs state=directory
 
 - name: Set postactivate
-  template: src=files/postactivate dest=/home/vagrant/.virtualenvs/postactivate
+  template: src=files/postactivate dest=/home/{{user}}/.virtualenvs/postactivate
