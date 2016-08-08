@@ -18,6 +18,8 @@ Ansible Provisioning Includes:
     * virtualenv
     * virtualenvwrapper
 * Postgres 9.5
+    * libpq-dev
+    * python-dev
     * postgresql
     * postgresql-contrib
     * postgresql-server-dev-9.5
@@ -25,6 +27,8 @@ Ansible Provisioning Includes:
     * python-mysqldb
     * mysql-client
     * mysql-server
+* Elasticsearch 2.x (this task complete takes long time)
+    * Installs Java7 as dependency
 
 # Instructions:
 
@@ -37,9 +41,10 @@ Ansible Provisioning Includes:
     ```
     git clone https://github.com/netoxico/vagrant-dev.git xenial64
     ```
-    `Note: ` vagrant is going to be called **xenial64** change as neaded
-* 3.- Init vagrant
+    `Note: ` vagrant is going to be called **xenial64** change as needed
+* 3.- Edit playbook commenting or uncommenting roles as needed.
+* 4.- Init vagrant
     ```
     cd xenial64; vagrant up
     ```
-* 4.- Enjoy
+* 5.- Enjoy

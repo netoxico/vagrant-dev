@@ -1,0 +1,17 @@
+- include: java.yml
+  when: elasticsearch_install_java
+
+- name: Add Elasticsearch repository key
+  apt_key: url="{{es_key_url}}" state=present
+  become: yes
+  become_method: sudo
+
+- name: Add Elasticsearch repository
+  apt_repository: repo="{{es_apt_repo}}" state=present
+  become: yes
+  become_method: sudo
+
+- name: Install Elasticsearch
+  apt: name=elasticsearch state=present update_cache=yes cache_valid_time=3600
+  become: yes
+  become_method: sudo
