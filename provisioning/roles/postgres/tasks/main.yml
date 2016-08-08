@@ -1,5 +1,13 @@
 ---
-- name: Install Postgres
+- name: Python dependencies to work with PostgreSQL
+  apt: name={{item}} state=installed
+  with_items:
+    - libpq-dev
+    - python-dev
+  become: yes
+  become_method: sudo
+
+- name: Install Postgresql
   apt: name={{item}} state=installed
   with_items:
     - postgresql
