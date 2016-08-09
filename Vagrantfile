@@ -17,7 +17,11 @@ Vagrant.configure("2") do |config|
             ansible.extra_vars = {
                 "roles" => ["common",
                             "python",
-                            "mysql"]
+                            "mysql",
+                            "nodejs"],
+                # global npm packages to be installed with npm
+                "npm_packages" => [{"name": "less"},
+                                   {"name": "node-sass"}]
             }
         end
         node.vm.provider "virtualbox" do |vb|
