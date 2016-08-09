@@ -14,6 +14,11 @@ Vagrant.configure("2") do |config|
         node.vm.provision "ansible" do |ansible|
             ansible.verbose = "v"
             ansible.playbook = "provisioning/playbook.yml"
+            ansible.extra_vars = {
+                "roles" => ["common",
+                            "python",
+                            "mysql"]
+            }
         end
         node.vm.provider "virtualbox" do |vb|
             vb.memory = "2048"
@@ -21,24 +26,24 @@ Vagrant.configure("2") do |config|
         end
     end
     # Optional Webserver 2
-    config.vm.define "web2" do |node|
-        node.vm.box = "geerlingguy/ubuntu1604"
-        node.vm.hostname = "web2"
-        node.vm.network :private_network, ip: "33.33.0.11"
-        node.vm.network "forwarded_port", guest: 8000, host: "8001", id: "django"
-        node.vm.network "forwarded_port", guest: 22, host: "2223", id: "ssh"
-        node.vm.provision "ansible" do |ansible|
-            #ansible.verbose = "v"
-            ansible.extra_vars = {
-                "roles" => ["common",
-                            "python",
-                            "mysql"]
-            }
-            ansible.playbook = "provisioning/playbook.yml"
-        end
-        node.vm.provider "virtualbox" do |vb|
-            vb.memory = "2048"
-            vb.cpus = 2
-        end
-    end
+    # config.vm.define "web2" do |node|
+    #     node.vm.box = "geerlingguy/ubuntu1604"
+    #     node.vm.hostname = "web2"
+    #     node.vm.network :private_network, ip: "33.33.0.11"
+    #     node.vm.network "forwarded_port", guest: 8000, host: "8001", id: "django"
+    #     node.vm.network "forwarded_port", guest: 22, host: "2223", id: "ssh"
+    #     node.vm.provision "ansible" do |ansible|
+    #         #ansible.verbose = "v"
+    #         ansible.extra_vars = {
+    #             "roles" => ["common",
+    #                         "python",
+    #                         "postgres"]
+    #         }
+    #         ansible.playbook = "provisioning/playbook.yml"
+    #     end
+    #     node.vm.provider "virtualbox" do |vb|
+    #         vb.memory = "2048"
+    #         vb.cpus = 2
+    #     end
+    # end
 end
