@@ -14,6 +14,11 @@ Vagrant.configure("2") do |config|
         node.vm.provision "ansible" do |ansible|
             ansible.verbose = "v"
             ansible.playbook = "provisioning/playbook.yml"
+            ansible.extra_vars = {
+                "roles" => ["common",
+                            "python",
+                            "mysql"]
+            }
         end
         node.vm.provider "virtualbox" do |vb|
             vb.memory = "2048"
@@ -29,6 +34,11 @@ Vagrant.configure("2") do |config|
     #     node.vm.network "forwarded_port", guest: 22, host: "2223", id: "ssh"
     #     node.vm.provision "ansible" do |ansible|
     #         #ansible.verbose = "v"
+    #         ansible.extra_vars = {
+    #             "roles" => ["common",
+    #                         "python",
+    #                         "postgres"]
+    #         }
     #         ansible.playbook = "provisioning/playbook.yml"
     #     end
     #     node.vm.provider "virtualbox" do |vb|
