@@ -12,13 +12,12 @@ Vagrant.configure("2") do |config|
         node.vm.network "forwarded_port", guest: 8000, host: "8000", id: "django",auto_correct: true
         node.vm.network "forwarded_port", guest: 22, host: "2222", id: "ssh", auto_correct: true
         node.vm.provision "ansible" do |ansible|
-            ansible.verbose = "v"
+            #ansible.verbose = "v"
             ansible.playbook = "provisioning/playbook.yml"
             ansible.extra_vars = {
                 "roles" => ["common",
                             "python",
-                            "mysql",
-                            "nodejs"],
+                            "mysql"],
                 # global npm packages to be installed with npm
                 "npm_packages" => [{"name": "less"},
                                    {"name": "node-sass"}]
@@ -38,10 +37,17 @@ Vagrant.configure("2") do |config|
     #     node.vm.network "forwarded_port", guest: 22, host: "2223", id: "ssh"
     #     node.vm.provision "ansible" do |ansible|
     #         #ansible.verbose = "v"
+    #         # most complete example
     #         ansible.extra_vars = {
     #             "roles" => ["common",
     #                         "python",
-    #                         "postgres"]
+    #                         "mysql",
+    #                         "postgres",
+    #                         "elasticsearch",
+    #                         "nodejs",
+    #                         "redis"],
+    #              "npm_packages" => [{"name": "less", "version":"latest"},
+    #                                 {"name": "node-sass", "version":"3.8.0"}]
     #         }
     #         ansible.playbook = "provisioning/playbook.yml"
     #     end
