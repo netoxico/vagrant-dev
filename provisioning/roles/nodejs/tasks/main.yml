@@ -1,0 +1,38 @@
+---
+- name: Ensure apt-transport-https is installed.
+  apt: name=apt-transport-https state=present
+
+- name: Add Nodesource apt key.
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+  become: yes
+  become_method: sudo
+
+- name: Add NodeSource repositories for Node.js.
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb https://deb.nodesource.com/node_{{ nodejs_version }} xenial main"
+    - "deb-src https://deb.nodesource.com/node_{{ nodejs_version }} xenial main"
+  register: node_repo
+  become: yes
+  become_method: sudo
+
+- name: Update apt cache if repo was added.
+  apt: update_cache=yes
+  when: node_repo.changed
+  become: yes
+  become_method: sudo
+
+- name: Ensure Node.js and npm are installed.
+  apt: "name=nodejs={{ nodejs_version|regex_replace('x', '') }}* state=present"
+  become: yes
+  become_method: sudo
+
+- name: Ensure npm global packages are installed.
+  npm: name={{item.name}} version={{item.version | default('latest')}} global=yes
+  with_items: "{{ npm_packages }}"
+  become: yes
+  become_method: sudo
