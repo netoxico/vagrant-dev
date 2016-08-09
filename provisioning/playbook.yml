@@ -5,9 +5,10 @@
   gather_facts: no
   vars:
     zsh_theme: cloud
+  # roles are specified in Vagrantfile (ansible.extra_vars)
   roles:
-    - common
-    - python
-    - mysql
-    # - postgres
-    # - elasticsearch
+    - { role: common, when: "'common' in roles " }
+    - { role: python, when: "'python' in roles " }
+    - { role: mysql, when: "'mysql' in roles " }
+    - { role: postgres, when: "'postgres' in roles " }
+    - { role: elasticsearch, when: "'elasticsearch' in roles " }
