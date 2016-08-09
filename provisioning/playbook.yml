@@ -13,3 +13,4 @@
     - { role: postgres, when: "'postgres' in roles " }
     - { role: elasticsearch, when: "'elasticsearch' in roles " }
     - { role: nodejs, when: "'nodejs' in roles ", npm_packages: npm_packages }
+    - { role: redis, when: "'redis' in roles " }

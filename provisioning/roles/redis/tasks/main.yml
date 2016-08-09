@@ -1,0 +1,7 @@
+- name: Ensure redis is installed.
+  apt: name=redis-server state=installed
+  become: yes
+  become_method: sudo
+
+- name: Ensure redis is running and enabled on boot.
+  service: "name=redis-server state=started enabled=yes"
