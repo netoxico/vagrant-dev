@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     # create web servers
     # Webserver 1
     config.vm.define "web1" do |node|
-        node.vm.box = "geerlingguy/ubuntu1604"
+        node.vm.box = "ubuntu/xenial64"
         node.vm.hostname = "web1"
         node.vm.network :private_network, ip: "33.33.0.10"
         node.vm.network "forwarded_port", guest: 8000, host: "8000", id: "django",auto_correct: true
