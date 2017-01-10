@@ -1,10 +1,13 @@
 ---
 - name: Install Django Development Environment
   hosts: all
-  user: vagrant
+  user: ubuntu
   gather_facts: no
   vars:
     zsh_theme: cloud
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
   # roles are specified in Vagrantfile (ansible.extra_vars)
   roles:
     - { role: common, when: "'common' in roles " }
