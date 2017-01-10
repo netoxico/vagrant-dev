@@ -24,4 +24,4 @@
   file: path=/home/{{user}}/.virtualenvs state=directory
 
 - name: Set postactivate
-  template: src=files/postactivate dest=/home/{{user}}/.virtualenvs/postactivate
+  template: src=../files/postactivate dest=/home/{{user}}/.virtualenvs/postactivate
