@@ -11,5 +11,6 @@
     - python-mysqldb
     - mysql-client
     - mysql-server
+    - libmysqlclient-dev
   become: yes
   become_method: sudo
