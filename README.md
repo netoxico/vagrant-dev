@@ -42,9 +42,9 @@ Ansible Provisioning Includes:
 # Instructions:
 
 * 1.- Make shure Virtualbox, Vagant and Ansible are installed
-    * virtualbox: [https://www.virtualbox.org/](https://www.virtualbox.org/)
-    * vagrant: [https://www.vagrantup.com/docs/installation/](https://www.vagrantup.com/docs/installation/)
-    * ansible: [http://docs.ansible.com/ansible/intro_installation.html](http://docs.ansible.com/ansible/intro_installation.html)
+    * virtualbox (v5.0 >): [https://www.virtualbox.org/](https://www.virtualbox.org/)
+    * vagrant (v1.9 >): [https://www.vagrantup.com/docs/installation/](https://www.vagrantup.com/docs/installation/)
+    * ansible (v2.2 >): [http://docs.ansible.com/ansible/intro_installation.html](http://docs.ansible.com/ansible/intro_installation.html)
 
 * 2.- Clone this repo
     ```
